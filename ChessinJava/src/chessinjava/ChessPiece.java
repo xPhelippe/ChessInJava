@@ -6,6 +6,8 @@
 package chessinjava;
 
 import java.awt.Point;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -13,8 +15,15 @@ import java.awt.Point;
  */
 public abstract class ChessPiece {
     
+    ChessPiece (Point startPos) {
+        pos = startPos;
+        movablePoints = new HashSet<>();
+    }
     
-    abstract void move(Point from, Point to);
-    abstract void attack(Point point);
+    Point pos;
+    Set<Point> movablePoints;
+    
+    abstract void findMovable(ChessBoard chessBoard);
+    
     
 }

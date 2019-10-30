@@ -5,7 +5,6 @@
  */
 package chessinjava;
 
-import chessinjava.ChessPiece;
 
 /**
  *
@@ -13,11 +12,22 @@ import chessinjava.ChessPiece;
  */
 public class ChessBoard {
     
-    private ChessPiece[][] chessBaord;
+    private ChessPiece[][] chessBoard;
+
+    public ChessPiece[][] getChessBoard() {
+        return chessBoard;
+    }
+
+    public void setChessBoard(ChessPiece[][] chessBoard) {
+        this.chessBoard = chessBoard;
+    }
     
-    public void movePiece() {
-        //for the player to move a piece
+    ChessBoard() {
         
+        chessBoard = new ChessPiece[8][8];
+        
+        
+    
     }
     
 }

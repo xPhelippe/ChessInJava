@@ -31,9 +31,9 @@ public class MainMenuController {
     
     @FXML
     void ClicktoPlayButtonClick(MouseEvent event) {
-        String text;
-        text = "P1:" + p1TextField.getText() + " P2:" + p2TextField.getText();
-        testLabel.setText(text);
+        ScreenChanger sc = new ScreenChanger();
+        
+        sc.changeScreen("ChessBoard.fxml", event);
     }
 
 }
