@@ -2,8 +2,15 @@ package phil;
 
 public class Game {
 
+    private ChessBoard chessBoard;
+
+    Game() {
+        chessBoard = new ChessBoard();
+    }
+
     public void playGame() {
         //create a board
+
 
         //player one makes a move
         //calculate valid moves for all pieces

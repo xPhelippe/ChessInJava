@@ -1,36 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea9b3863-c170-4438-9c82-33de5e8251c1" name="Default Changelist" comment="Removed default code. Added main menu. commented out dependency in Maven. Created ChessPiece and Chessboard class.">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phil/ChessBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phil/ChessPiece.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phil/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phil/GameBoardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phil/MainMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/phil/gameBoard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/phil/mainMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="ea9b3863-c170-4438-9c82-33de5e8251c1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chessPieces/Bishop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chessPieces/ChessPiece.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chessPieces/King.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chessPieces/Knight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chessPieces/Pawn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chessPieces/Queen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chessPieces/Rook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phil/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phil/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phil/PrimaryController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phil/SecondaryController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phil/testController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/phil/primary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/phil/secondary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/phil/test.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phil/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phil/ChessBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phil/ChessPiece.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phil/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phil/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phil/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phil/MainMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/phil/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/phil/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/phil/PrimaryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/phil/SecondaryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/phil/primary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/phil/secondary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/phil/test.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/phil/testController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/phil/ChessBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/phil/ChessBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/phil/ChessPiece.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/phil/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/phil/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/phil/MainMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/phil/MainMenuController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,70 +137,103 @@
       <option name="presentableId" value="Default" />
       <updated>1574801687383</updated>
     </task>
+    <task id="LOCAL-00001" summary="Created the main view for the game. Made it possible to type out names in the Menu and view them on the main view">
+      <created>1576867007467</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576867007467</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Created the main view for the game. Made it possible to type out names in the Menu and view them on the main view">
+      <created>1576867106368</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1576867106368</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Removed default code. Added main menu. commented out dependency in Maven. Created ChessPiece and Chessboard class." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed default code. Added main menu. commented out dependency in Maven. Created ChessPiece and Chessboard class." />
+    <MESSAGE value="Created the main view for the game. Made it possible to type out names in the Menu and view them on the main view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created the main view for the game. Made it possible to type out names in the Menu and view them on the main view" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="0" key="#Project_Structure" timestamp="1576803699796">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="233" y="0" key="#Project_Structure/0.0.1280.720@0.0.1280.720" timestamp="1576803699796" />
-    <state x="446" y="24" key="#com.intellij.ide.util.MemberChooser" timestamp="1576728540483">
+    <state x="95" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576878263983">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="446" y="24" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1576728540483" />
-    <state x="460" y="31" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1576170890840">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="95" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1576878263983" />
+    <state x="446" y="24" key="#com.intellij.ide.util.MemberChooser" timestamp="1576882316638">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="446" y="24" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1576882316638" />
+    <state x="460" y="33" width="557" height="618" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1576878761932">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="460" y="31" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1280.680@0.0.1280.680" timestamp="1576170890840" />
-    <state x="249" y="0" key="CommitChangelistDialog2" timestamp="1576803984691">
+    <state x="460" y="33" width="557" height="618" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1280.720@0.0.1280.720" timestamp="1576878761932" />
+    <state x="438" y="225" width="404" height="239" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1576882211962">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="249" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1576803984691" />
+    <state x="438" y="225" width="404" height="239" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.720@0.0.1280.720" timestamp="1576882211962" />
+    <state x="209" y="0" key="CommitChangelistDialog2" timestamp="1576883556781">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="209" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1576883556781" />
     <state x="421" y="86" key="FileChooserDialogImpl" timestamp="1576797558565">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1576287841050" />
     <state x="421" y="86" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1576797558565" />
-    <state width="1202" height="147" key="GridCell.Tab.0.bottom" timestamp="1576866937857">
+    <state width="1202" height="147" key="GridCell.Tab.0.bottom" timestamp="1576883445959">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1202" height="147" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1576287870891" />
-    <state width="1202" height="147" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1576866937857" />
-    <state width="1202" height="147" key="GridCell.Tab.0.center" timestamp="1576866937857">
+    <state width="1202" height="147" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1576883445959" />
+    <state width="1202" height="147" key="GridCell.Tab.0.center" timestamp="1576883445959">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1202" height="147" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1576287870891" />
-    <state width="1202" height="147" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1576866937857" />
-    <state width="1202" height="147" key="GridCell.Tab.0.left" timestamp="1576866937857">
+    <state width="1202" height="147" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1576883445959" />
+    <state width="1202" height="147" key="GridCell.Tab.0.left" timestamp="1576883445959">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1202" height="147" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1576287870891" />
-    <state width="1202" height="147" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1576866937857" />
-    <state width="1202" height="147" key="GridCell.Tab.0.right" timestamp="1576866937857">
+    <state width="1202" height="147" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1576883445959" />
+    <state width="1202" height="147" key="GridCell.Tab.0.right" timestamp="1576883445959">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1202" height="147" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1576287870891" />
-    <state width="1202" height="147" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1576866937857" />
+    <state width="1202" height="147" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1576883445959" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1576170862565">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1576170862565" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1576867116416">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.720@0.0.1280.720" timestamp="1576867116416" />
     <state x="451" y="118" key="chooseDestDirectoryDialog" timestamp="1576862907354">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="451" y="118" key="chooseDestDirectoryDialog/0.0.1280.720@0.0.1280.720" timestamp="1576862907354" />
-    <state x="336" y="174" key="com.intellij.ide.util.TipDialog" timestamp="1576796169050">
+    <state x="336" y="174" key="com.intellij.ide.util.TipDialog" timestamp="1576878103320">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="336" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1576287611030" />
-    <state x="336" y="174" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1576796169050" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1576728182945">
+    <state x="336" y="174" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1576878103320" />
+    <state x="436" y="29" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1576879346043">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1576728182945" />
+    <state x="436" y="29" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1576879346043" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1576882686596">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1576882686596" />
   </component>
 </project>
