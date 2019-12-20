@@ -2,6 +2,7 @@ package phil;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -17,14 +18,23 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("mainMenu"));
         stage.setScene(scene);
         stage.show();
     }
 
     //used to change the scene to whatever I need
     static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        Scene sc = new Scene(loadFXML(fxml));
+
+        Stage st = (Stage) scene.getWindow();
+
+        st.hide();
+        st.setScene(sc);
+        st.show();
+
+
+
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

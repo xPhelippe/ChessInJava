@@ -1,4 +1,7 @@
+phil\ChessBoard.class
+phil\Game.class
 module-info.class
-phil\PrimaryController.class
+phil\GameBoardController.class
 phil\App.class
-phil\SecondaryController.class
+phil\ChessPiece.class
+phil\MainMenuController.class
