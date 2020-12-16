@@ -1,6 +1,7 @@
 package Chess;
 
 import java.awt.Point;
+import java.util.Locale;
 
 public class ChessBoard {
     private int width;
@@ -92,11 +93,29 @@ public class ChessBoard {
 
     }
 
-    public boolean canMovePiece(Point start, Point end, String team) {
-        return true;
+    public String canMovePiece(Point start, Point end, String team) {
+        return "yes";
     }
 
     public String movePiece(Point start, Point end, String team) {
+
+        String canMoveResult = canMovePiece(start, end, team);
+
+        if(canMoveResult.toLowerCase() == "yes") {
+
+            //if there is a piece at the new location. remove it
+            if(!(board[end.x][end.y] instanceof Dummy)) {
+                board[end.x][end.y] = new Dummy();
+            }
+
+            //swap the two pieces
+            board[end.x][end.y] = board[start.x][start.y];
+            board[start.x][start.y] = new Dummy();
+
+        } else {
+            return canMoveResult;
+        }
+
         return "Success";
     }
 
