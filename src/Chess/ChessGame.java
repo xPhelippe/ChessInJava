@@ -42,9 +42,10 @@ public class ChessGame {
 
     private Point makePoint (String  text) {
         text = text.toLowerCase();
-        //a in ascii is 97
 
+        //a in ascii is 97
         int  row = text.charAt(0) - 97;
+
         //0 in ascii is 48
         int col = text.charAt(1) - 48 - 1;
 

@@ -52,7 +52,7 @@ public class ChessBoard {
         board[0][3] = new Dummy();
         board[1][3] = new Dummy();
         board[2][3] = new Dummy();
-        board[3][3] = new Queen("White");
+        board[3][3] = new Bishop("White");
         board[4][3] = new Dummy();
         board[5][3] = new Dummy();
         board[6][3] = new Dummy();
@@ -116,6 +116,11 @@ public class ChessBoard {
         String canMoveResult = canMovePiece(start, end, team);
 
         if(canMoveResult.toLowerCase() == "yes") {
+
+            //if it is a pawn, set isFirstMove to false
+            if(board[start.x][start.y] instanceof Pawn) {
+                ((Pawn) board[start.x][start.y]).setFirstMove(false);
+            }
 
             //if there is a piece at the new location. remove it
             if(!(board[end.x][end.y] instanceof Dummy)) {

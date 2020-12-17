@@ -58,6 +58,11 @@ abstract class ChessPiece {
 
     }
 
+    protected boolean isOnBoard(Point loc, ChessBoard board) {
+        return (loc.x >= 0 && loc.x < board.getBoard()[0].length) && (loc.y >= 0 && loc.y < board.getBoard().length);
+    }
+
+    // TODO bring isEmpty() and isEnemy() into parent class
     @Override
     public String toString() {
         String team = this.team.substring(0,1).toLowerCase();
