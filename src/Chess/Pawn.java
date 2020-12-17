@@ -8,16 +8,9 @@ public class Pawn extends ChessPiece {
         super(team);
     }
 
-    public boolean move(Point start, Point end, int length, int width){
-        return true;
+
+    @Override
+    protected void findMoveSet(Point loc, ChessBoard board) {
+
     }
-
-    public boolean canMove(Point start, Point end, int length, int width){
-        return true;
-    }
-
-
-
-
-
 }

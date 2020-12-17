@@ -28,21 +28,27 @@ public class ChessGame {
 
             Point end = makePoint(sc.next());
 
+            //try to move user to new location
             String moveSuccess = board.movePiece(start, end, currentPlayer);
 
-            if (!(moveSuccess.toLowerCase() == "success")) {
+            if (!(moveSuccess.equalsIgnoreCase("success"))) {
                 System.out.println(moveSuccess);
             }
 
             System.out.println("");
         }
 
-
     }
 
     private Point makePoint (String  text) {
+        text = text.toLowerCase();
+        //a in ascii is 97
 
-        return new Point(Integer.valueOf(text.substring(0,1)), Integer.valueOf(text.substring(2,3)));
+        int  row = text.charAt(0) - 97;
+        //0 in ascii is 48
+        int col = text.charAt(1) - 48 - 1;
+
+        return new Point(row, col);
     }
 
     private boolean hasWon(String player){
