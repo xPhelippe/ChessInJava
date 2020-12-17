@@ -99,16 +99,42 @@ public class ChessBoard {
 
     public String canMovePiece(Point start, Point end, String team) {
 
+        // check to see if points are on board
+        if(!isOnBoard(start)) {
+            return "Starting point is not on board";
+        }
+
+        if(!isOnBoard(end)) {
+            return "Ending point is not on board.";
+        }
+
+        // see if start point has a piece in it
+        if(getBoard()[start.x][start.y] instanceof Dummy){
+            return "No Piece selected to move";
+        }
+
+        // see if piece being selected belongs to current team
+        if(!(getBoard()[start.x][start.y].getTeam().equals(team))) {
+            return "Please select a piece on the " + team + " team";
+        }
+
+
+        // test to see if piece can move to desired location
         boolean canItMove = this.getBoard()[start.x][start.y].canMove(start, end, this);
 
+        // print the move set of the piece (used for debugging purposes, but is also really cool)
         this.getBoard()[start.x][start.y].printMoveSet(start, this);
 
         if(canItMove) {
             return "yes";
         } else {
-            return "no";
+            return "Invalid move. Try again.";
         }
 
+    }
+
+    public boolean isOnBoard(Point loc) {
+        return (loc.x >= 0 && loc.x < getBoard()[0].length) && (loc.y >= 0 && loc.y < getBoard().length);
     }
 
     public String movePiece(Point start, Point end, String team) {
@@ -139,6 +165,8 @@ public class ChessBoard {
 
 
     }
+
+    // TODO add methods to get and set a piece given a point and replace all board accesses with this method
 
     @Override
     public String toString() {

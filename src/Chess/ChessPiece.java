@@ -58,8 +58,9 @@ abstract class ChessPiece {
 
     }
 
+    // TODO refactor isOnBoard. get rid of call here and only invoke the call through the board class
     protected boolean isOnBoard(Point loc, ChessBoard board) {
-        return (loc.x >= 0 && loc.x < board.getBoard()[0].length) && (loc.y >= 0 && loc.y < board.getBoard().length);
+        return board.isOnBoard(loc);
     }
 
     // TODO bring isEmpty() and isEnemy() into parent class
