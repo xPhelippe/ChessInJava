@@ -8,15 +8,6 @@ public class Bishop extends ChessPiece {
         super(team);
     }
 
-    public boolean canMove(Point start, Point end, ChessBoard board){
-        //check to see if the current spot has a bishop in it
-        findMoveSet(start, board);
-
-
-        //see if end point is in the set
-        return moveSet.contains(end);
-
-    }
 
     public void findMoveSet(Point loc, ChessBoard board) {
 
@@ -112,12 +103,5 @@ public class Bishop extends ChessPiece {
 
 
     }
-
-
-
-
-
-
-
 
 }

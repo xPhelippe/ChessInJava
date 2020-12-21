@@ -14,13 +14,105 @@ public class ChessBoard {
         return board;
     }
 
+    // TODO add methods to get and set a piece given a point and replace all board accesses with this method
+
+    public ChessPiece getPieceAt(Point loc) {
+        if(isOnBoard(loc)) {
+            return this.board[loc.x][loc.y];
+        } else {
+            return null;
+        }
+
+    }
+
+    public void setPieceAt(Point loc, ChessPiece piece) {
+        this.board[loc.x][loc.y] = piece;
+    }
+
     ChessBoard() {
         this.width = 8;
         this.length = 8;
         init();
     }
 
-    public void init() {
+    private void testInit() {
+
+          board = new ChessPiece[8][8];
+        board[0][0] = new Dummy();
+        board[1][0] = new Dummy();
+        board[2][0] = new Dummy();
+        board[3][0] = new Dummy();
+        board[4][0] = new Dummy();
+        board[5][0] = new Dummy();
+        board[6][0] = new Dummy();
+        board[7][0] = new Dummy();
+
+        board[0][1] = new Dummy();
+        board[1][1] = new Dummy();
+        board[2][1] = new Dummy();
+        board[3][1] = new Dummy();
+        board[4][1] = new Dummy();
+        board[5][1] = new Dummy();
+        board[6][1] = new Dummy();
+        board[7][1] = new Dummy();
+
+        board[0][2] = new Dummy();
+        board[1][2] = new Dummy();
+        board[2][2] = new Dummy();
+        board[3][2] = new Dummy();
+        board[4][2] = new Dummy();
+        board[5][2] = new Dummy();
+        board[6][2] = new Dummy();
+        board[7][2] = new Dummy();
+
+        board[0][3] = new Dummy();
+        board[1][3] = new Dummy();
+        board[2][3] = new Dummy();
+        board[3][3] = new King("Black");
+        board[4][3] = new Dummy();
+        board[5][3] = new Dummy();
+        board[6][3] = new Dummy();
+        board[7][3] = new Dummy();
+
+        board[0][4] = new Dummy();
+        board[1][4] = new Dummy();
+        board[2][4] = new Dummy();
+        board[3][4] = new Dummy();
+        board[4][4] = new Dummy();
+        board[5][4] = new Dummy();
+        board[6][4] = new Dummy();
+        board[7][4] = new Dummy();
+
+        board[0][5] = new Dummy();
+        board[1][5] = new Dummy();
+        board[2][5] = new Dummy();
+        board[3][5] = new Dummy();
+        board[4][5] = new Dummy();
+        board[5][5] = new Dummy();
+        board[6][5] = new Dummy();
+        board[7][5] = new Dummy();
+
+        board[0][6] = new Dummy();
+        board[1][6] = new Dummy();
+        board[2][6] = new Queen("White");
+        board[3][6] = new Dummy();
+        board[4][6] = new Dummy();
+        board[5][6] = new Dummy();
+        board[6][6] = new Dummy();
+        board[7][6] = new Dummy();
+
+
+        board[0][7] = new Dummy();
+        board[1][7] = new Dummy();
+        board[2][7] = new Dummy();
+        board[3][7] = new Dummy();
+        board[4][7] = new Dummy();
+        board[5][7] = new Dummy();
+        board[6][7] = new Dummy();
+        board[7][7] = new King("White");
+
+    }
+    private void realInit() {
         board = new ChessPiece[8][8];
         board[0][0] = new Rook("white");
         board[1][0] = new Knight("White");
@@ -52,7 +144,7 @@ public class ChessBoard {
         board[0][3] = new Dummy();
         board[1][3] = new Dummy();
         board[2][3] = new Dummy();
-        board[3][3] = new Bishop("White");
+        board[3][3] = new King("Black");
         board[4][3] = new Dummy();
         board[5][3] = new Dummy();
         board[6][3] = new Dummy();
@@ -70,7 +162,7 @@ public class ChessBoard {
         board[0][5] = new Dummy();
         board[1][5] = new Dummy();
         board[2][5] = new Dummy();
-        board[3][5] = new Dummy();
+        board[3][5] = new Bishop("White");
         board[4][5] = new Dummy();
         board[5][5] = new Dummy();
         board[6][5] = new Dummy();
@@ -89,11 +181,16 @@ public class ChessBoard {
         board[0][7] = new Rook("Black");
         board[1][7] = new Knight("Black");
         board[2][7] = new Bishop("Black");
-        board[3][7] = new King("Black");
+        board[3][7] = new Dummy();
         board[4][7] = new Queen("Black");
         board[5][7] = new Bishop("Black");
         board[6][7] = new Knight("Black");
         board[7][7] = new Rook("Black");
+    }
+
+    public void init() {
+        //testInit();
+        realInit();
 
     }
 
@@ -166,7 +263,6 @@ public class ChessBoard {
 
     }
 
-    // TODO add methods to get and set a piece given a point and replace all board accesses with this method
 
     @Override
     public String toString() {
