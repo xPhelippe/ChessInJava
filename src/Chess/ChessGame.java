@@ -9,6 +9,8 @@ import java.util.Set;
 public class ChessGame {
 
     private ChessBoard board;
+
+
     private String currentPlayer;
     private Point whiteKingLoc;
     private Point blackKingLoc;
@@ -59,14 +61,21 @@ public class ChessGame {
 
             String moveSuccess;
 
-            //check to see if move is on board
 
             //if king is in check and will still be in check after that movement, then don't allow player to move
             if(isKinginCheck && this.board.getPieceAt(start) instanceof King && !validKingMovements.contains(end) && currentPlayer.equals(teamInCheck)) {
                 moveSuccess = "King is in check";
             } else if(isKinginCheck && !(this.board.getPieceAt(start) instanceof King)) {
                 moveSuccess = "Must move King. King is in Check";
-            } else {
+            } else if (!isKinginCheck && this.board.getPieceAt(start) instanceof King) {
+                boolean canmovehere = canKingMoveto(end, this.board.getPieceAt(start).getTeam());
+                if(!canmovehere) {
+                    moveSuccess = "Move will put King in Check";
+                } else {
+                    moveSuccess = board.movePiece(start, end, currentPlayer);
+                }
+
+            }  else {
                 //try to move user to new location
                 moveSuccess = board.movePiece(start, end, currentPlayer);
             }
@@ -110,6 +119,15 @@ public class ChessGame {
                             System.out.println("King is in Check");
                         }
                     }
+
+                // if piece is a pawn and the pawn has reached the opposite side of the stage
+                // then I need to allow the player to replace the pawn with a new piece
+                    if(pieceMoved instanceof Pawn) {
+                        //see if it is at its opposite end
+                        if(end.y == 0 || end.y == 7) {
+                            replacePawn(end);
+                        }
+                    }
                 }
 
                 // if king is in check
@@ -117,7 +135,6 @@ public class ChessGame {
                 if(isKinginCheck) {
                     hasWon = !canKingMove(teamInCheck);
                 }
-
 
 
                 // change teams
@@ -171,10 +188,8 @@ public class ChessGame {
         return new Point(row, col);
     }
 
-    private boolean canKingMove(String player){
-
-        //start by clearing the king's valid moves
-        validKingMovements.clear();
+    private boolean canKingMoveto(Point loc, String team) {
+        boolean canSafelyMove = false;
 
         //find king of the player
         ChessPiece king;
@@ -190,10 +205,58 @@ public class ChessGame {
 
         //if there is not enemy king, return true
         if(king instanceof Dummy) {
-            return true;
+            return canSafelyMove;
         }
 
-        Point kingMoves[] = {
+
+        //see if the king can move to the specified location
+        if(board.isOnBoard(loc)) {
+            // need to store piece at that spot
+            ChessPiece temp = board.getPieceAt(loc);
+
+            // if chess piece is on the same team as the king, then return false
+            if(temp.getTeam().equalsIgnoreCase(team)) {
+                return canSafelyMove;
+            }
+
+            // move king to that spot
+            board.getBoard()[loc.x][loc.y] = new King(king.getTeam());
+            board.getBoard()[kingLoc.x][kingLoc.y] = new Dummy();
+
+            // see if king is in danger if he moves there...
+
+            canSafelyMove =
+                    !canBishoporQueenKill(loc, board, team) &&
+                            !canKingKill(loc, board) &&
+                            !canKnightKill(loc, board, team) &&
+                            !canPawnKill(loc, board) &&
+                            !canRookorQueenKill(loc, board, team);
+
+            // move king back to its original spot
+            board.getBoard()[kingLoc.x][kingLoc.y] = new King(king.getTeam());
+            board.getBoard()[loc.x][loc.y] = temp;
+        }
+        return canSafelyMove;
+    }
+
+     // TODO think if I should revise this method to be a linear scan through all of the enemy team's pieces
+
+    private boolean canKingMove(String team){
+
+        //start by clearing the king's valid moves
+        validKingMovements.clear();
+
+        //get location of king
+        Point kingLoc;
+
+        if(teamInCheck.equalsIgnoreCase("white")) {
+            kingLoc = whiteKingLoc;
+        } else {
+            kingLoc = blackKingLoc;
+        }
+
+        //create all possible moves a king can make
+        Point[] kingMoves = {
                 new Point(kingLoc.x - 1, kingLoc.y - 1), // top left
                 new Point( kingLoc.x, kingLoc.y -1), // top middle
                 new Point(kingLoc.x + 1, kingLoc.y - 1), // top right
@@ -204,65 +267,16 @@ public class ChessGame {
                 new Point( kingLoc.x + 1, kingLoc.y + 1) //bottom right
         };
 
-        // this section is not needed because the function is only called after the king is already in check
-//        boolean isEmptySpace = false;
-//        boolean isAllWhite = true;
-//        for(Point move: kingMoves) {
-//            if(board.isOnBoard(move)) {
-//                if(board.getBoard()[move.x][move.y] instanceof Dummy) {
-//                    isEmptySpace = true;
-//                    isAllWhite = false;
-//                    break;
-//                } else if (!board.getBoard()[move.x][move.y].getTeam().equals(enemyKing.getTeam())) {
-//                    isAllWhite = false;
-//                }
-//            }
-//        }
-//
-//        // if king is surrounded by white pieces, then the game can continue
-//        if(!isEmptySpace && isAllWhite) {
-//            return false;
-//        }
-
-        // assume the king cannot move to a location
+        // see if the king can move to any of the locations
         boolean canSafelyMove = false;
 
         for(Point move: kingMoves) {
 
+            canSafelyMove = canKingMoveto(move, team);
 
-            if(board.isOnBoard(move)) {
-                // need to store piece at that spot
-                ChessPiece temp = board.getBoard()[move.x][move.y];
-
-                // if chess piece is on the same team as the king, then continue
-                if(temp.getTeam().equalsIgnoreCase(player)) {
-                    continue;
-                }
-
-                // move king to that spot
-                board.getBoard()[move.x][move.y] = new King(king.getTeam());
-                board.getBoard()[kingLoc.x][kingLoc.y] = new Dummy();
-
-                // see if king is in danger if he moves there...
-
-                canSafelyMove =
-                        !canBishoporQueenKill(move, board, player) &&
-                                !canKingKill(move, board) &&
-                                !canKnightKill(move, board) &&
-                                !canPawnKill(move, board) &&
-                                !canRookKill(move, board, player);
-
-                if(canSafelyMove) {
-                    //if I can safely move here, then I should add this move to the king's viable moveset
-                    validKingMovements.add(move);
-                }
-
-
-                // move king back to its original spot
-                board.getBoard()[kingLoc.x][kingLoc.y] = new King(king.getTeam());
-                board.getBoard()[move.x][move.y] = temp;
-
-
+            if(canSafelyMove) {
+                //if king can safely move here, the point should be added to the king's move set.
+                validKingMovements.add(move);
             }
         }
 
@@ -380,9 +394,9 @@ public class ChessGame {
         return containsBishoporQueen;
     }
 
-    private boolean canRookKill(Point loc, ChessBoard board, String team) {
+    private boolean canRookorQueenKill(Point loc, ChessBoard board, String team) {
 
-        boolean containsRook = false;
+        boolean containsRookorQueen = false;
 
         // left
         int x = loc.x - 1;
@@ -396,8 +410,8 @@ public class ChessGame {
 
             } else if (cur.getTeam().equals(team)) {// if space contains team member, break
                 break;
-            } else if ( cur instanceof Rook){ // if space contains enemy, add to move set, and then break
-                containsRook = true;
+            } else if ( cur instanceof Rook || cur instanceof Queen){ // if space contains enemy, add to move set, and then break
+                containsRookorQueen = true;
                 break;
             } else { // if enemy piece is not queen or bishop, then we can move on to next diagonal
                 break;
@@ -406,7 +420,7 @@ public class ChessGame {
             x--;
         }
 
-        if(containsRook) return true;
+        if(containsRookorQueen) return true;
 
         //right
         x = loc.x + 1;
@@ -420,8 +434,8 @@ public class ChessGame {
 
             } else if (cur.getTeam().equals(team)) {// if space contains team member, break
                 break;
-            } else if ( cur instanceof Rook){ // if space contains enemy, add to move set, and then break
-                containsRook = true;
+            } else if ( cur instanceof Rook || cur instanceof Queen){ // if space contains enemy, add to move set, and then break
+                containsRookorQueen = true;
                 break;
             } else { // if enemy piece is not queen or bishop, then we can move on to next diagonal
                 break;
@@ -430,7 +444,7 @@ public class ChessGame {
             x++;
         }
 
-        if(containsRook) return true;
+        if(containsRookorQueen) return true;
 
         //up
 
@@ -445,8 +459,8 @@ public class ChessGame {
 
             } else if (cur.getTeam().equals(team)) {// if space contains team member, break
                 break;
-            } else if ( cur instanceof Rook){ // if space contains enemy, add to move set, and then break
-                containsRook = true;
+            } else if ( cur instanceof Rook || cur instanceof Queen){ // if space contains enemy, add to move set, and then break
+                containsRookorQueen = true;
                 break;
             } else { // if enemy piece is not queen or bishop, then we can move on to next diagonal
                 break;
@@ -455,7 +469,7 @@ public class ChessGame {
             y--;
         }
 
-        if(containsRook) return true;
+        if(containsRookorQueen) return true;
 
         //down
 
@@ -470,8 +484,8 @@ public class ChessGame {
 
             } else if (cur.getTeam().equals(team)) {// if space contains team member, break
                 break;
-            } else if ( cur instanceof Rook){ // if space contains enemy, add to move set, and then break
-                containsRook = true;
+            } else if ( cur instanceof Rook || cur instanceof Queen){ // if space contains enemy, add to move set, and then break
+                containsRookorQueen = true;
                 break;
             } else { // if enemy piece is not queen or bishop, then we can move on to next diagonal
                 break;
@@ -480,10 +494,10 @@ public class ChessGame {
             y++;
         }
 
-        return containsRook;
+        return containsRookorQueen;
     }
 
-    private boolean canKnightKill(Point loc, ChessBoard board) {
+    private boolean canKnightKill(Point loc, ChessBoard board, String team) {
         boolean containsKnight = false;
 
         Point possibleMoves[] = {
@@ -498,10 +512,15 @@ public class ChessGame {
         };
 
         for(Point move: possibleMoves){
-            if(this.board.isOnBoard(move) && this.board.getPieceAt(move) instanceof Knight){
-                containsKnight = true;
-                break;
+            if(this.board.isOnBoard(move)) {
+                ChessPiece cur = this.board.getPieceAt(move);
+                if(cur instanceof Knight && !cur.getTeam().equals(team)){
+                    containsKnight = true;
+                    break;
+                }
             }
+
+
         }
 
         return containsKnight;
@@ -536,7 +555,7 @@ public class ChessGame {
     private boolean canKingKill(Point loc, ChessBoard board) {
         boolean containsKing = false;
 
-        Point possibleMoves[] = {
+        Point[] possibleMoves = {
                 new Point(loc.x - 1, loc.y - 1), // top left
                 new Point( loc.x, loc.y -1), // top middle
                 new Point(loc.x + 1, loc.y - 1), // top right
@@ -557,6 +576,34 @@ public class ChessGame {
         return containsKing;
     }
 
+    private void replacePawn(Point loc) {
+
+        Pawn pawn = (Pawn) board.getPieceAt(loc);
+
+        //ask user to pick a piece to replace it with
+        System.out.println("Please select a piece to replace your pawn with:");
+        System.out.println("Bishop (b), Rook (r), Knight (k), Queen (q)");
+
+        Scanner sc = new Scanner(System.in);
+
+        String result = sc.next();
+
+        switch(result){
+            case "b":
+                board.setPieceAt(loc,new Bishop(pawn.getTeam()));
+                break;
+            case "r":
+                board.setPieceAt(loc,new Rook(pawn.getTeam()));
+                break;
+            case "k":
+                board.setPieceAt(loc,new Knight(pawn.getTeam()));
+                break;
+            case "q":
+                board.setPieceAt(loc,new Queen(pawn.getTeam()));
+                break;
+        }
+
+    }
 
 
 }

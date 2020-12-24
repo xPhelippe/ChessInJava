@@ -47,7 +47,7 @@ public class ChessBoard {
         board[6][0] = new Dummy();
         board[7][0] = new Dummy();
 
-        board[0][1] = new Dummy();
+        board[0][1] = new Queen("White");
         board[1][1] = new Dummy();
         board[2][1] = new Dummy();
         board[3][1] = new Dummy();
@@ -96,7 +96,7 @@ public class ChessBoard {
         board[1][6] = new Dummy();
         board[2][6] = new Queen("White");
         board[3][6] = new Dummy();
-        board[4][6] = new Dummy();
+        board[4][6] = new Pawn("Black");
         board[5][6] = new Dummy();
         board[6][6] = new Dummy();
         board[7][6] = new Dummy();
@@ -144,7 +144,7 @@ public class ChessBoard {
         board[0][3] = new Dummy();
         board[1][3] = new Dummy();
         board[2][3] = new Dummy();
-        board[3][3] = new King("Black");
+        board[3][3] = new Dummy();
         board[4][3] = new Dummy();
         board[5][3] = new Dummy();
         board[6][3] = new Dummy();
@@ -162,7 +162,7 @@ public class ChessBoard {
         board[0][5] = new Dummy();
         board[1][5] = new Dummy();
         board[2][5] = new Dummy();
-        board[3][5] = new Bishop("White");
+        board[3][5] = new Dummy();
         board[4][5] = new Dummy();
         board[5][5] = new Dummy();
         board[6][5] = new Dummy();
@@ -181,7 +181,7 @@ public class ChessBoard {
         board[0][7] = new Rook("Black");
         board[1][7] = new Knight("Black");
         board[2][7] = new Bishop("Black");
-        board[3][7] = new Dummy();
+        board[3][7] = new King("Black");
         board[4][7] = new Queen("Black");
         board[5][7] = new Bishop("Black");
         board[6][7] = new Knight("Black");
@@ -210,6 +210,7 @@ public class ChessBoard {
             return "No Piece selected to move";
         }
 
+        // TODO move to chess game class
         // see if piece being selected belongs to current team
         if(!(getBoard()[start.x][start.y].getTeam().equals(team))) {
             return "Please select a piece on the " + team + " team";
