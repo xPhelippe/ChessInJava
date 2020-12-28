@@ -27,6 +27,130 @@ public class ChessGame {
         validKingMovements = new HashSet<>();
     }
 
+    public void init() {
+        //initialize chess board
+        board.init();
+
+        //set current player to white
+        currentPlayer = "White";
+
+        //initialize some key values
+        isKinginCheck = false;
+        teamInCheck = "none";
+        validKingMovements.clear();
+
+        //find kings on the board
+        findKings();
+    }
+
+    public String attemptMovePiece(Point start, Point end) {
+
+        String moveSuccess;
+
+
+        //if king is in check and will still be in check after that movement, then don't allow player to move
+        if(isKinginCheck && this.board.getPieceAt(start) instanceof King && !validKingMovements.contains(end) && currentPlayer.equals(teamInCheck)) {
+            moveSuccess = "King is in check";
+        } else if(isKinginCheck && !(this.board.getPieceAt(start) instanceof King)) {
+            moveSuccess = "Must move King. King is in Check";
+        } else if (!isKinginCheck && this.board.getPieceAt(start) instanceof King) {
+            boolean canmovehere = canKingMoveto(end, this.board.getPieceAt(start).getTeam());
+            if(!canmovehere) {
+                moveSuccess = "Move will put King in Check";
+            } else {
+                moveSuccess = board.movePiece(start, end, currentPlayer);
+            }
+
+        }  else {
+            //try to move user to new location
+            moveSuccess = board.movePiece(start, end, currentPlayer);
+        }
+
+        //check and see if move was successful
+        if (moveSuccess.equalsIgnoreCase("success")) {
+
+            ChessPiece pieceMoved = this.board.getPieceAt(end);
+
+            //if the piece is a king, then update the kings location variable
+            if(pieceMoved instanceof King) {
+                if(this.board.getPieceAt(end).getTeam().equalsIgnoreCase("white")){
+                    whiteKingLoc = end;
+                } else {
+                    blackKingLoc = end;
+                }
+
+                // If the king was in check, then make it not in check.
+                // We can do this without checking to see if the king was in check
+                // Because the king in check can only move to locations that will make it out of check
+                if(isKinginCheck && teamInCheck.equals(currentPlayer)) {
+                    isKinginCheck = false;
+                    teamInCheck = "none";
+                    validKingMovements.clear();
+                }
+
+
+            } else {
+                //if piece is not a king, we need to see if the enemy's king is in check now
+                if (pieceMoved.getTeam().equals("White")) {
+                    isKinginCheck = pieceMoved.canMove(end,blackKingLoc, this.board);
+                    if(isKinginCheck){
+                        teamInCheck = "Black";
+                        System.out.println("King is in Check");
+
+                        //Set the return string to say the king is in check
+                        moveSuccess = teamInCheck + "'s King is in check";
+                    }
+
+                } else {
+                    isKinginCheck = pieceMoved.canMove(end,whiteKingLoc, this.board);
+                    if(isKinginCheck){
+                        teamInCheck = "White";
+                        System.out.println("King is in Check");
+
+                        //Set the return string to say the king is in check
+                        moveSuccess = teamInCheck + "'s King is in check";
+                    }
+                }
+
+                // if piece is a pawn and the pawn has reached the opposite side of the stage
+                // then I need to allow the player to replace the pawn with a new piece
+                if(pieceMoved instanceof Pawn) {
+                    //see if it is at its opposite end
+                    if(end.y == 0 || end.y == 7) {
+                        replacePawn(end);
+                    }
+                }
+            }
+
+            // if king is in check
+            boolean hasWon = false;
+            if(isKinginCheck) {
+                hasWon = !canKingMove(teamInCheck);
+            }
+
+
+            // change teams
+            if(currentPlayer.equals("White")) {
+                currentPlayer = "Black";
+            } else {
+                currentPlayer = "White";
+            }
+
+            if(hasWon) {
+                moveSuccess = "Contrats, team " + teamInCheck + " has won!";
+            }
+        }
+
+        return moveSuccess;
+
+
+
+    }
+
+    public ChessBoard getBoard() {
+        return this.board;
+    }
+
     public void play(){
 
         //initialize chess board

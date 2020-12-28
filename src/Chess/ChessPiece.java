@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-abstract class ChessPiece {
+public abstract class ChessPiece {
     private String team;
     protected Set<Point> moveSet;
 
