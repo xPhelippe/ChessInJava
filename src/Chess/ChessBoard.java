@@ -114,7 +114,7 @@ public class ChessBoard {
     }
     private void realInit() {
         board = new ChessPiece[8][8];
-        board[0][0] = new Rook("white");
+        board[0][0] = new Rook("White");
         board[1][0] = new Knight("White");
         board[2][0] = new Bishop("White");
         board[3][0] = new King("White");

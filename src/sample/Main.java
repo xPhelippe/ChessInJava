@@ -5,26 +5,19 @@ import Chess.ChessPiece;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import javafx.scene.shape.*;
 
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class Main extends Application {
 
@@ -40,15 +33,29 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
+//        //creating game and setting board
+//        game = new ChessGame();
+//        game.init();
+//
+//        //draw the board
+//        Group root = drawBoard();
+
+
+        primaryStage.setTitle("Chess in Java!");
+        primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));
+        primaryStage.show();
+
+
+    }
+
+    private Group drawBoard() {
 
         Group root = new Group();
-        // Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-
-
 
         // creating the square grids
-        Rectangle rects[][] = new Rectangle[8][8];
+        Rectangle[][] rects = new Rectangle[8][8];
 
         for(int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
@@ -70,15 +77,12 @@ public class Main extends Application {
         }
 
 
-
         for(Rectangle rect1 []: rects) {
             root.getChildren().addAll(rect1);
         }
 
-        //creating game and setting board
-        game = new ChessGame();
-        game.init();
 
+        //adding chess pieces from the game board
         for(int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 ChessPiece cur = game.getBoard().getPieceAt(new Point(i,j));
@@ -105,7 +109,7 @@ public class Main extends Application {
                         imView.setPreserveRatio(true);
 
                         //make the imageviews draggable
-                        makeDragable(imView);
+                        makeDraggable(imView);
 
                         //adding image to scene
                         root.getChildren().add(imView);
@@ -119,9 +123,22 @@ public class Main extends Application {
             }
         }
 
-        primaryStage.setTitle("Chess in Java!");
-        primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));
-        primaryStage.show();
+        //adding text block in the middle of the screen
+        Text text = new Text();
+
+        text.setText("This is test text");
+
+        text.setX(sceneWidth/2);
+        text.setY(sceneHeight/2);
+
+        text.setTextAlignment(TextAlignment.CENTER);
+
+
+
+
+
+
+        return root;
     }
 
     private ImageView getChessPieceImageView(ChessPiece piece ) throws FileNotFoundException {
@@ -153,7 +170,7 @@ public class Main extends Application {
 
     }
 
-    private void makeDragable(ImageView imv) {
+    private void makeDraggable(ImageView imv) {
         imv.setOnMousePressed((event) -> {
             if(firstTimemoved) {
                 startingPoint = new Point( (int) imv.getX(), (int) imv.getY());
@@ -186,6 +203,7 @@ public class Main extends Application {
             Point from = new Point(startingPoint.x /(sceneWidth/8), startingPoint.y/(sceneHeight/8));
             Point to = new Point((int)properX/(sceneWidth/8), (int) properY/(sceneHeight/8));
 
+
             System.out.println("starting point: " + startingPoint);
             System.out.println("From: " + from +" to: " + to);
             String success = game.attemptMovePiece(from, to);
@@ -198,8 +216,13 @@ public class Main extends Application {
                 imv.setY((double) startingPoint.y);
             }
 
-
             System.out.println("Success? [" + success + "]");
+
+
+            Group newRoot = drawBoard();
+
+            imv.getScene().setRoot(newRoot);
+
 
         });
 

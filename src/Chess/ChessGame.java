@@ -51,9 +51,11 @@ public class ChessGame {
         //if king is in check and will still be in check after that movement, then don't allow player to move
         if(isKinginCheck && this.board.getPieceAt(start) instanceof King && !validKingMovements.contains(end) && currentPlayer.equals(teamInCheck)) {
             moveSuccess = "King is in check";
-        } else if(isKinginCheck && !(this.board.getPieceAt(start) instanceof King)) {
+        }
+        else if(isKinginCheck && !(this.board.getPieceAt(start) instanceof King)) {
             moveSuccess = "Must move King. King is in Check";
-        } else if (!isKinginCheck && this.board.getPieceAt(start) instanceof King) {
+        }
+        else if (!isKinginCheck && this.board.getPieceAt(start) instanceof King) {
             boolean canmovehere = canKingMoveto(end, this.board.getPieceAt(start).getTeam());
             if(!canmovehere) {
                 moveSuccess = "Move will put King in Check";
@@ -61,7 +63,8 @@ public class ChessGame {
                 moveSuccess = board.movePiece(start, end, currentPlayer);
             }
 
-        }  else {
+        }
+        else {
             //try to move user to new location
             moveSuccess = board.movePiece(start, end, currentPlayer);
         }
@@ -140,6 +143,8 @@ public class ChessGame {
                 moveSuccess = "Contrats, team " + teamInCheck + " has won!";
             }
         }
+
+        System.out.println(board.toString());
 
         return moveSuccess;
 
@@ -319,7 +324,7 @@ public class ChessGame {
         ChessPiece king;
         Point kingLoc;
 
-        if(teamInCheck.equalsIgnoreCase("white")) {
+        if(team.equalsIgnoreCase("white")) {
             kingLoc = whiteKingLoc;
             king = this.board.getPieceAt(whiteKingLoc);
         } else {

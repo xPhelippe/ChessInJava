@@ -1,0 +1,13 @@
+
+.regText {
+    -fx-font-family: Arial Rounded Mt;
+    -fx-font-weight: bolder;
+    -fx-fill: #C3D1E9;
+    -fx-font-size: 25;
+
+}
+
+.background {
+
+    -fx-background-color:  #1C2D4A;
+}
