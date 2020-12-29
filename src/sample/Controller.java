@@ -17,7 +17,6 @@ import java.io.FileNotFoundException;
 public class Controller {
 
     private double x, y;
-    private boolean firstTimemoved = true;
     private Point startingPoint;
 
     private ChessGame game;
@@ -160,9 +159,9 @@ public class Controller {
         double sceneHeight = root.getPrefHeight();
 
         imv.setOnMousePressed((event) -> {
-            if(firstTimemoved) {
-                startingPoint = new Point( (int) imv.getX(), (int) imv.getY());
-            }
+
+            startingPoint = new Point( (int) imv.getX(), (int) imv.getY());
+
             x = event.getX();
             y = event.getY();
         });

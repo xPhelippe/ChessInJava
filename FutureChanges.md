@@ -1,8 +1,10 @@
-# Future Change sto be made
+# End of project goals
+(as of 12.28.20)
 
-## Possible changes
-
-
-## necessary changes
-
-1. add the ability to replace the pawn if it moves to the other side
+- fully functional game of chess (sans castling and en passant)
+	- fix king issue
+	- fix team that wins
+	- allow pawns to change characters
+- refactor code for readability and modularity
+	- refactor what I can into the king
+	- erase everything from the main class
