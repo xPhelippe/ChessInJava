@@ -15,9 +15,9 @@ public class Bishop extends ChessPiece {
 
         int x = loc.x - 1;
         int y = loc.y - 1;
-        while((x >= 0 && x < board.getBoard()[0].length) && (y >=0 && y < board.getBoard().length)) {
+        while((x >= 0 && x < board.getBoardLength()) && (y >=0 && y < board.getBoardWidth())) {
 
-            ChessPiece cur = board.getBoard()[x][y];
+            ChessPiece cur = board.getPieceAt(new Point(x,y));
 
             if( cur instanceof Dummy) {//if space is empty, add to moveSet
                 moveSet.add(new Point(x,y));
@@ -38,9 +38,9 @@ public class Bishop extends ChessPiece {
 
         x = loc.x + 1;
         y = loc.y - 1;
-        while((x >= 0 && x < board.getBoard()[0].length) && (y >=0 && y < board.getBoard().length)) {
+        while((x >= 0 && x < board.getBoardLength()) && (y >=0 && y < board.getBoardWidth())) {
 
-            ChessPiece cur = board.getBoard()[x][y];
+            ChessPiece cur = board.getPieceAt(new Point(x,y));
 
             if( cur instanceof Dummy) {//if space is empty, add to moveSet
                 moveSet.add(new Point(x,y));
@@ -60,9 +60,9 @@ public class Bishop extends ChessPiece {
 
         x = loc.x - 1;
         y = loc.y + 1;
-        while((x >= 0 && x < board.getBoard()[0].length) && (y >=0 && y < board.getBoard().length)) {
+        while((x >= 0 && x < board.getBoardLength()) && (y >=0 && y < board.getBoardWidth())) {
 
-            ChessPiece cur = board.getBoard()[x][y];
+            ChessPiece cur = board.getPieceAt(new Point(x,y));
 
             if( cur instanceof Dummy) {//if space is empty, add to moveSet
                 moveSet.add(new Point(x,y));
@@ -83,9 +83,9 @@ public class Bishop extends ChessPiece {
 
         x = loc.x + 1;
         y = loc.y + 1;
-        while((x >= 0 && x < board.getBoard()[0].length) && (y >=0 && y < board.getBoard().length)) {
+        while((x >= 0 && x < board.getBoardLength()) && (y >=0 && y < board.getBoardWidth())) {
 
-            ChessPiece cur = board.getBoard()[x][y];
+            ChessPiece cur = board.getPieceAt(new Point(x,y));
 
             if( cur instanceof Dummy) {//if space is empty, add to moveSet
                 moveSet.add(new Point(x,y));

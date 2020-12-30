@@ -14,9 +14,9 @@ public class Rook extends ChessPiece {
         int x = loc.x - 1;
         int y = loc.y;
 
-        while(x >= 0 && x < board.getBoard().length) {
+        while(x >= 0 && x < board.getBoardLength()) {
 
-            ChessPiece cur = board.getBoard()[x][y];
+            ChessPiece cur = board.getPieceAt(new Point(x,y));
 
             if(cur instanceof Dummy) {
                 moveSet.add(new Point(x, y));
@@ -34,9 +34,9 @@ public class Rook extends ChessPiece {
         x = loc.x + 1;
         y = loc.y;
 
-        while(x >= 0 && x < board.getBoard().length) {
+        while(x >= 0 && x < board.getBoardLength()) {
 
-            ChessPiece cur = board.getBoard()[x][y];
+            ChessPiece cur = board.getPieceAt(new Point(x,y));
 
             if(cur instanceof Dummy) {
                 moveSet.add(new Point(x, y));
@@ -55,9 +55,9 @@ public class Rook extends ChessPiece {
         x = loc.x;
         y = loc.y - 1;
 
-        while(y >= 0 && y < board.getBoard()[0].length) {
+        while(y >= 0 && y < board.getBoardWidth()) {
 
-            ChessPiece cur = board.getBoard()[x][y];
+            ChessPiece cur = board.getPieceAt(new Point(x,y));
 
             if(cur instanceof Dummy) {
                 moveSet.add(new Point(x, y));
@@ -76,9 +76,9 @@ public class Rook extends ChessPiece {
         x = loc.x;
         y = loc.y + 1;
 
-        while(y >= 0 && y < board.getBoard()[0].length) {
+        while(y >= 0 && y < board.getBoardWidth()) {
 
-            ChessPiece cur = board.getBoard()[x][y];
+            ChessPiece cur = board.getPieceAt(new Point(x,y));
 
             if(cur instanceof Dummy) {
                 moveSet.add(new Point(x, y));

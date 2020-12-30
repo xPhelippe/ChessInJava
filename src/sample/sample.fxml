@@ -16,9 +16,9 @@
       </HBox>
    </bottom>
    <top>
-      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="80.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="messageText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="Text" textAlignment="CENTER" />
+            <Text fx:id="messageText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="Text" textAlignment="CENTER" wrappingWidth="400.0" />
             <HBox alignment="BOTTOM_LEFT">
                <children>
                   <Text fx:id="playerOneText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="Text" />
@@ -28,9 +28,12 @@
       </VBox>
    </top>
    <center>
-      <Pane fx:id="boardPane" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="boardPane" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </BorderPane.margin></Pane>
    </center>
    <padding>
-      <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
    </padding>
 </BorderPane>

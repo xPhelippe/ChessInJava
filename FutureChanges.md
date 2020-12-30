@@ -3,8 +3,8 @@
 
 - fully functional game of chess (sans castling and en passant)
 	- fix king issue
-	- fix team that wins
-	- allow pawns to change characters
+	- fix team that wins -- 
+	- allow pawns to change characters via gui
 - refactor code for readability and modularity
 	- refactor what I can into the king
-	- erase everything from the main class
+	- erase everything from the main class -- 

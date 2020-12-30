@@ -4,18 +4,13 @@ import java.awt.Point;
 import java.util.Locale;
 
 public class ChessBoard {
-    private int width;
-
-    private int length;
 
     private ChessPiece [][] board;
 
-    public ChessPiece[][] getBoard() {
-        return board;
-    }
 
-    // TODO add methods to get and set a piece given a point and replace all board accesses with this method
-
+    /*
+        returns the piece at a given location
+     */
     public ChessPiece getPieceAt(Point loc) {
         if(isOnBoard(loc)) {
             return this.board[loc.x][loc.y];
@@ -25,16 +20,30 @@ public class ChessBoard {
 
     }
 
+    /*
+        sets the piece at a given location
+        TODO remove all uses of this method as only the board should be able to move pieces
+     */
     public void setPieceAt(Point loc, ChessPiece piece) {
         this.board[loc.x][loc.y] = piece;
     }
 
     ChessBoard() {
-        this.width = 8;
-        this.length = 8;
+
         init();
     }
 
+    public int getBoardLength() {
+        return this.board.length;
+    }
+
+    public int getBoardWidth() {
+        return this.board[0].length;
+    }
+
+    /*
+        testing initializations for the board
+     */
     private void testInit() {
 
           board = new ChessPiece[8][8];
@@ -112,6 +121,10 @@ public class ChessBoard {
         board[7][7] = new King("White");
 
     }
+
+    /*
+        the classing board layout for a game of chess
+     */
     private void realInit() {
         board = new ChessPiece[8][8];
         board[0][0] = new Rook("White");
@@ -188,15 +201,22 @@ public class ChessBoard {
         board[7][7] = new Rook("Black");
     }
 
+    /*
+        function for initailizing the pieces on the board
+     */
     public void init() {
         //testInit();
         realInit();
 
     }
 
+    /*
+        checks to see if a piece can move from one location to the next.
+        Does NOT move the piece
+     */
     public String canMovePiece(Point start, Point end, String team) {
 
-        // check to see if points are on board
+        // check to see if  both points are on board
         if(!isOnBoard(start)) {
             return "Starting point is not on board";
         }
@@ -206,22 +226,22 @@ public class ChessBoard {
         }
 
         // see if start point has a piece in it
-        if(getBoard()[start.x][start.y] instanceof Dummy){
+        if(getPieceAt(start) instanceof Dummy){
             return "No Piece selected to move";
         }
 
         // TODO move to chess game class
         // see if piece being selected belongs to current team
-        if(!(getBoard()[start.x][start.y].getTeam().equals(team))) {
+        if(!(getPieceAt(start).getTeam().equals(team))) {
             return "Please select a piece on the " + team + " team";
         }
 
 
         // test to see if piece can move to desired location
-        boolean canItMove = this.getBoard()[start.x][start.y].canMove(start, end, this);
+        boolean canItMove = this.getPieceAt(start).canMove(start, end, this);
 
         // print the move set of the piece (used for debugging purposes, but is also really cool)
-        this.getBoard()[start.x][start.y].printMoveSet(start, this);
+        this.getPieceAt(start).printMoveSet(start, this);
 
         if(canItMove) {
             return "yes";
@@ -231,15 +251,21 @@ public class ChessBoard {
 
     }
 
+    /*
+        sees if a point is located on the board
+     */
     public boolean isOnBoard(Point loc) {
-        return (loc.x >= 0 && loc.x < getBoard()[0].length) && (loc.y >= 0 && loc.y < getBoard().length);
+        return (loc.x >= 0 && loc.x < this.board[0].length) && (loc.y >= 0 && loc.y < this.board.length);
     }
 
+    /*
+        tests to see if a piece can move from one point to the other and moves that piece
+     */
     public String movePiece(Point start, Point end, String team) {
 
         String canMoveResult = canMovePiece(start, end, team);
 
-        if(canMoveResult.toLowerCase() == "yes") {
+        if(canMoveResult.equalsIgnoreCase("yes")) {
 
             //if it is a pawn, set isFirstMove to false
             if(board[start.x][start.y] instanceof Pawn) {
@@ -258,6 +284,7 @@ public class ChessBoard {
             return "Success";
 
         } else {
+            // If move is not successful, return error code
             return canMoveResult;
         }
 
@@ -265,6 +292,9 @@ public class ChessBoard {
     }
 
 
+    /*
+        print out of chess board
+     */
     @Override
     public String toString() {
 

@@ -23,7 +23,7 @@ public class Pawn extends ChessPiece {
 
         if(isFirstMove) {
             //see what direction the pawn will advance in
-            advanceUp = loc.y > board.getBoard()[0].length/2;
+            advanceUp = loc.y > board.getBoardWidth()/2;
 
         }
 
@@ -104,13 +104,6 @@ public class Pawn extends ChessPiece {
         }
     }
 
-    private boolean isEmpty(Point loc, ChessBoard board) {
-        return board.getBoard()[loc.x][loc.y] instanceof Dummy;
-    }
-
-    private boolean isEnemy(Point loc, ChessBoard board) {
-        return !(board.getBoard()[loc.x][loc.y].getTeam().equals(this.getTeam()));
-    }
 
     public void setFirstMove(boolean firstMove) {
         isFirstMove = firstMove;

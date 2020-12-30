@@ -35,7 +35,7 @@ public class Knight extends ChessPiece {
 
     private boolean isEmptyorEnemy(Point loc, ChessBoard board) {
         //if the piece is a dummy (blank) or an enemy piece then return true
-        return board.getBoard()[loc.x][loc.y] instanceof Dummy || !(board.getBoard()[loc.x][loc.y].getTeam().equals(this.getTeam()));
+        return isEmpty(loc, board) || isEnemy(loc, board);
     }
 
     @Override

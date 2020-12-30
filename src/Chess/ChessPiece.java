@@ -22,6 +22,9 @@ public abstract class ChessPiece {
         moveSet = new HashSet<>();
     }
 
+    /*
+        tests to see if a piece can move from one location to the next
+     */
     public boolean canMove(Point start, Point end, ChessBoard board){
         //clear the current move set
         moveSet.clear();
@@ -34,20 +37,26 @@ public abstract class ChessPiece {
 
     }
 
+    /*
+        calculates the move set for a piece. This method is different for each type of piece
+     */
     protected abstract void findMoveSet(Point loc, ChessBoard board);
 
+    /*
+        prints the move set of a piece on a chess board
+     */
     public void printMoveSet(Point loc, ChessBoard board) {
         moveSet.clear();
         findMoveSet(loc, board);
         System.out.println("Move Set");
-        for(int y = 0; y < board.getBoard()[0].length; y++) {
-            for(int x = 0; x < board.getBoard().length; x++) {
+        for(int y = 0; y < board.getBoardWidth(); y++) {
+            for(int x = 0; x < board.getBoardLength(); x++) {
 
                 System.out.print("[");
                 if(moveSet.contains(new Point(x,y))){
                     System.out.print("00");
                 } else {
-                    System.out.print(board.getBoard()[x][y]);
+                    System.out.print(board.getPieceAt(new Point(x,y)));
                 }
                 System.out.print("]");
 
@@ -64,12 +73,20 @@ public abstract class ChessPiece {
     }
 
     // TODO bring isEmpty() and isEnemy() into parent class
+
+    protected boolean isEmpty(Point loc, ChessBoard board) {
+        return board.getPieceAt(loc) instanceof Dummy;
+    }
+
+    protected boolean isEnemy(Point loc, ChessBoard board) {
+        return !(board.getPieceAt(loc).getTeam().equals(this.getTeam()));
+    }
+
     @Override
     public String toString() {
         String team = this.team.substring(0,1).toLowerCase();
         String pieceName = this.getClass().getName().substring(6,7);
 
-        return String.format(team + pieceName
-                );
+        return team + pieceName;
     }
 }
