@@ -22,7 +22,7 @@ public class ChessBoard {
 
     /*
         sets the piece at a given location
-        TODO remove all uses of this method as only the board should be able to move pieces
+        TODO possible remove all uses of this method as only the board should be able to move pieces
      */
     public void setPieceAt(Point loc, ChessPiece piece) {
         this.board[loc.x][loc.y] = piece;

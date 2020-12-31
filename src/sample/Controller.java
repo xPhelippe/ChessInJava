@@ -2,16 +2,22 @@ package sample;
 
 import Chess.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-import java.awt.*;
+import java.awt.Point;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Controller {
 
@@ -47,6 +53,13 @@ public class Controller {
         playerOneText.setText("PlayerOne");
         playerTwoText.setText("PlayerTwo");
         messageText.setText("Let the Game Begin!");
+    }
+
+    /*
+        a public method for redrawing the scene that other scenes may call
+     */
+    public void drawBoard() {
+        drawBoard(boardPane);
     }
 
     /*
@@ -102,8 +115,6 @@ public class Controller {
 
 
                     try {
-
-
                         ImageView imView = getChessPieceImageView(cur);
 
                         //setting image loc
@@ -116,7 +127,7 @@ public class Controller {
 
                         imView.setPreserveRatio(true);
 
-                        //make the imageviews draggable
+                        //make the image views draggable
                         makeDraggable(imView, root);
 
                         //adding image to scene
@@ -134,7 +145,7 @@ public class Controller {
     }
 
     /*
-        given a chess piece, the function returns the correct image for that chesspiece
+        given a chess piece, the function returns the correct image for that chess piece
      */
     private ImageView getChessPieceImageView(ChessPiece piece ) throws FileNotFoundException {
         //see what the type of chess piece is
@@ -156,7 +167,7 @@ public class Controller {
         // construct path to correct image
         FileInputStream stream = new FileInputStream("./ChessImages/" + team + type + ".png");
 
-        //gram image from path
+        //grab image from path
         Image img = new Image(stream);
 
         //return image view
@@ -215,23 +226,71 @@ public class Controller {
             //System.out.println("starting point: " + startingPoint);
             //System.out.println("From: " + from +" to: " + to);
 
-            // attemtping to move the piece located at "from" to "to"
+            // attempting to move the piece located at "from" to "to"
             String success = game.attemptMovePiece(from, to);
 
             // TODO add check for if game is over!
             if(success.equalsIgnoreCase("success")) {
-                // if move is successful image is moved
-                imv.setX(properX);
-                imv.setY(properY);
+                // if move is successful change the message text to say which team can move
+
+                // at first, I moved the image, but since the board gets redrawn after this statement
+                // moving the image is redundant
+                //imv.setX(properX);
+                //imv.setY(properY);
 
                 // and message says what team goes next
                 messageText.setText(game.getCurrentPlayer() + " team may move now.");
-            } else {
+            } else if(success.equalsIgnoreCase("change black pawn") || success.equalsIgnoreCase("change white pawn")) {
+                // if a pawn must be changed. then the window for selecting a new piece is loaded
+
+                try {
+
+                    // loading the view
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("pawnChange.fxml"));
+                    Parent pawnChange;
+                    pawnChange = loader.load();
+
+                    // setting the team that needs to have its piece moved
+                    PawnChangeController ct = (PawnChangeController) loader.getController();
+                    if(success.equalsIgnoreCase("change white pawn")) {
+                        ct.setTeam("White");
+                    } else {
+                        ct.setTeam("Black");
+                    }
+
+                    // passing a reference to the current window to the controller
+                    ct.mainWindow = this;
+
+                    // passing a reference to the game to the controller
+                    ct.game = this.game;
+
+                    // loading the images based on the correct team
+                    ct.loadImages();
+
+                    // creating and showing the window
+                    Stage newWindow = new Stage();
+                    newWindow.setTitle("Choose a New Piece");
+                    newWindow.setScene(new Scene(pawnChange));
+                    newWindow.initModality(Modality.APPLICATION_MODAL);
+                    newWindow.show();
+
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+            else {
                 // if move is not successful, piece must be moved back to starting location
 
-
-                imv.setX(startingPoint.x);
-                imv.setY(startingPoint.y);
+                // this is a redundant operation since the board gets redrawn.
+                // it also is not accurate since there messages that get sent when the move is successful
+                // perhaps, the success message should be changed into a class of sorts that comes with a message
+                // TODO refactor sucess messasge into its own class
+                //imv.setX(startingPoint.x);
+                //imv.setY(startingPoint.y);
 
                 // and error text must be displayed
                 messageText.setText(success);
@@ -242,11 +301,7 @@ public class Controller {
 
             // once move is made, the board gets redrawn
             drawBoard(root);
-
-
         });
-
-
     }
 
 }

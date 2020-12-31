@@ -3,6 +3,7 @@ package Chess;
 
 import java.awt.*;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -142,7 +143,7 @@ public class ChessGame {
                 if(pieceMoved instanceof Pawn) {
                     //see if it is at its opposite end
                     if(end.y == 0 || end.y == 7) {
-                        replacePawn(end);
+                        moveSuccess = "Change " + pieceMoved.getTeam() + " pawn";
                     }
                 }
             }
@@ -172,6 +173,46 @@ public class ChessGame {
 
 
 
+    }
+
+    /*
+        replaces the pawn of a given team with the correct piece
+        this function assumes only one pawn exists in the top or bottom rows.
+     */
+    public void replacePawn(String replacement, String team) {
+
+        // create new piece to replace pawn with
+        ChessPiece replace = new Dummy();
+
+        switch (replacement.toLowerCase()) {
+            case "bishop" -> replace = new Bishop(team);
+            case "queen" -> replace = new Queen(team);
+            case "rook" -> replace = new Rook(team);
+            case "knight" -> replace = new Knight(team);
+        }
+
+        // look for pawn along the top row of the board
+        int y = 0;
+
+        for(int x = 0; x < board.getBoardLength(); x++) {
+            ChessPiece cur = board.getPieceAt(new Point(x, y));
+
+            if(cur instanceof  Pawn && cur.getTeam().equalsIgnoreCase(team)) {
+                board.setPieceAt(new Point(x,y), replace);
+            }
+        }
+
+        // look for pawn along the bottom row of the board
+
+        y = 7;
+
+        for(int x = 0; x < board.getBoardLength(); x++) {
+            ChessPiece cur = board.getPieceAt(new Point(x, y));
+
+            if(cur instanceof  Pawn && cur.getTeam().equalsIgnoreCase(team)) {
+                board.setPieceAt(new Point(x,y), replace);
+            }
+        }
     }
 
     /*
