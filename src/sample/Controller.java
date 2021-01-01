@@ -353,6 +353,7 @@ public class Controller {
                             newWindow.initModality(Modality.APPLICATION_MODAL);
                             newWindow.show();
 
+                            drawBoard();
 
 
                         } catch (IOException e) {
@@ -379,6 +380,9 @@ public class Controller {
                     messageText.setText(success.getMessage());
 
 
+                    drawBoard();
+                    break;
+                default:
                     drawBoard();
             }
 

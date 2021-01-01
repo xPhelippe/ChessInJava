@@ -8,3 +8,4 @@ Although I condisder this project finished, no project is never truly done. Here
 - change the color scheme of the gui to make it look prettier
 - add Junit tests
 - add networking so people can play world wide
+- minor refactoring

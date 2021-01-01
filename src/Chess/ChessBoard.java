@@ -296,6 +296,11 @@ public class ChessBoard {
 
             ChessPiece cur = getPieceAt(end);
 
+            // If king is moved, then update the king's location
+            if(cur instanceof King) {
+                kingLocs.put(cur.getTeam(), end);
+            }
+
             // Check to see if the team's king is in check.
             // If king is in check, see if this move saved it
             King king  =  (King) getPieceAt(kingLocs.get(cur.getTeam()));
@@ -322,9 +327,6 @@ public class ChessBoard {
             // Once the piece has been moved successfully (and the king is safe),
             // a few checks need to be made
             if(cur instanceof King) {
-                // If king is moved, then update the king's location
-                kingLocs.put(cur.getTeam(), end);
-
                 // Mark king as being not in check
                 ((King) cur).setInCheck(false);
             } else {
