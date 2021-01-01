@@ -2,8 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -13,12 +16,18 @@
          <children>
             <Text fx:id="playerTwoText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="Text" />
          </children>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" top="10.0" />
+         </BorderPane.margin>
       </HBox>
    </bottom>
    <top>
       <VBox alignment="CENTER" prefHeight="80.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="messageText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="Text" textAlignment="CENTER" wrappingWidth="400.0" />
+            <Text fx:id="messageText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="Text" textAlignment="CENTER" wrappingWidth="400.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin></Text>
             <HBox alignment="BOTTOM_LEFT">
                <children>
                   <Text fx:id="playerOneText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="Text" />
@@ -27,13 +36,78 @@
          </children>
       </VBox>
    </top>
-   <center>
-      <Pane fx:id="boardPane" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-         </BorderPane.margin></Pane>
-   </center>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
    </padding>
+   <center>
+      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints />
+          <ColumnConstraints />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints />
+          <RowConstraints />
+        </rowConstraints>
+         <children>
+            <GridPane alignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints fillWidth="false" halignment="CENTER" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="8" GridPane.hgrow="NEVER" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="7" GridPane.hgrow="NEVER" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="6" GridPane.hgrow="NEVER" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="5" GridPane.hgrow="NEVER" GridPane.rowIndex="3" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="4" GridPane.hgrow="NEVER" GridPane.rowIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="3" GridPane.hgrow="NEVER" GridPane.rowIndex="5" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="2" GridPane.hgrow="NEVER" GridPane.rowIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="1" GridPane.hgrow="NEVER" GridPane.rowIndex="7" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </GridPane>
+            <Pane fx:id="boardPane" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <GridPane alignment="CENTER" GridPane.columnIndex="1">
+              <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="A" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="B" GridPane.columnIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="C" GridPane.columnIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="D" GridPane.columnIndex="3" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="E" GridPane.columnIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="F" GridPane.columnIndex="5" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="G" GridPane.columnIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="regText" text="H" GridPane.columnIndex="7" />
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </GridPane.margin>
+            </GridPane>
+         </children>
+      </GridPane>
+   </center>
 </BorderPane>

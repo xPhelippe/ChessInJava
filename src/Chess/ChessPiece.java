@@ -6,7 +6,7 @@ import java.util.Locale;
 import java.util.Set;
 
 public abstract class ChessPiece {
-    private String team;
+    protected String team;
     protected Set<Point> moveSet;
 
     public String getTeam() {
@@ -35,6 +35,15 @@ public abstract class ChessPiece {
         //see if end point is in the set
         return moveSet.contains(end);
 
+    }
+
+    /*
+        calculates and returns the move set for a piece
+     */
+    public Set<Point> getMoveSet(Point loc, ChessBoard board) {
+        findMoveSet(loc, board);
+
+        return this.moveSet;
     }
 
     /*
